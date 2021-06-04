@@ -1,0 +1,117 @@
+<h3>главная</h3>
+<div class="row custom-row">
+  <div class= "col-sm-5 custom-container jumbotron">
+
+    <form class="form-horizontal" [formGroup]="form" (ngSubmit)="submit()">
+      <fieldset>
+<!--        <legend>SignUp</legend>-->
+
+        <div class="form-group">
+          <label for = "inputName" >Full Name  </label>
+          <input type = "text"
+                 formControlName="name"
+                 id = "inputName"
+                 placeholder="Name" >
+        </div>
+
+        <div class="form-group">
+          <label for="inputEmail">Email  </label>
+          <input type = "text"
+                 formControlName="email"
+                 id ="inputEmail"
+                 placeholder="Email">
+                 <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                   error
+                 </div>
+        </div>
+
+        <div class="form-group" >
+          <label for="password">Password  </label>
+          <input type="password"
+                 formControlName="password"
+                 id="password"
+                 placeholder="Password">
+          <ng-container *ngIf="form.controls['password'].errors?.minlength">
+            <div
+              *ngIf="form.controls['password'].errors?.minlength.actualLength < form.controls['password'].errors?.minlength.requiredLength ">
+              Password must be at least 6 characters
+            </div>
+          </ng-container>
+        </div>
+
+       <div class="form-group">
+        <label for="confirm Password" >Confirm Password  </label>
+         <input type="password"
+                formControlName="confirmPassword"
+                id="confirm Password"
+                placeholder="Password">
+
+           <div
+             *ngIf="(form.controls['password'].value !== form.controls['confirmPassword'].value)"
+           >Error
+
+           </div>
+
+         <div *ngIf="form.controls['confirmPassword'].errors?.checkPassword"> check password</div>
+
+       </div>
+
+
+       <div class="form-group ">
+          <label for="select1">country  </label>
+         <select id ="select1" formControlName="country">
+
+           <option>Kazakhstan</option>
+          <option>Russia</option>
+          <option>Uzbekistan</option>
+           <option>China</option>
+        </select>
+     </div>
+
+        <div class="form-group">
+          <label for="select2">Gender  </label>
+         <select id="select2"
+                 formControlName="gender">
+            <option>Male</option>
+           <option>Female</option>
+            <option>Other</option>
+         </select>
+        </div>
+
+
+
+<!--        <label class="container"> jofda-->
+<!--        <input type="checkbox" checked="checked">-->
+<!--        <span class="checkmark"></span>-->
+<!--        </label>-->
+
+<!--        <label class="container">fedad-->
+<!--          <input type="checkbox">-->
+<!--          <span class="checkmark"></span>-->
+<!--        </label>-->
+
+<!--        <label class="container">adda-->
+<!--          <input type="checkbox">-->
+<!--          <span class="checkmark"></span>-->
+<!--        </label>-->
+
+<!--        <label class="container">jwkasm-->
+<!--          <input type="checkbox">-->
+<!--          <span class="checkmark"></span>-->
+<!--        </label>-->
+
+
+        <div class="form-group">
+
+
+         <button type="submit" class="registerbtn"  [disabled]= "form.invalid"
+
+          >Register</button>
+
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+<button routerLink="about">Click Here</button>
